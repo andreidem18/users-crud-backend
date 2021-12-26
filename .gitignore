@@ -1,8 +1,13 @@
+.env
+venv_users_crud
+*.log
+*.pot
+*.pyc
+__pycache__
+# Distribution / packaging
 .Python
 venv/
-venv_users_crud
 env/
-.env
 *.sqlite3
 .idea/
 # Project asset folders
