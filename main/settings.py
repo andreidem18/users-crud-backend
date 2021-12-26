@@ -135,6 +135,8 @@ REST_FRAMEWORK = {
 }
 SIMPLE_JWT={'ACCESS_TOKEN_LIFETIME': timedelta(days= 1)}
 
+AUTH_USER_MODEL = 'users.User'
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
@@ -156,14 +158,14 @@ USE_TZ = True
 db_from_env = dj_database_url.config(conn_max_age=500)  
 DATABASES['default'].update(db_from_env)
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  
 STATIC_URL = '/static/'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
+# Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (  
     os.path.join(BASE_DIR, 'static'),
 )
 
-AUTH_USER_MODEL = 'users.User'
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
 
 django_heroku.settings(locals())
