@@ -28,7 +28,6 @@ class UserViewSet(ModelViewSet):
                 type = p['type']
             )
             phones.append(phone)
-        print("\n\n\n====== PHONES =======\n\n\n", phones)
         user.phones.set(phones)
         serialized = UserSerializer(user)
         return Response(status = status.HTTP_201_CREATED, data = serialized.data)
