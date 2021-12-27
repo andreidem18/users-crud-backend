@@ -16,11 +16,11 @@ class UserSerializer(ModelSerializer):
     occupation = OccupationSerializer(read_only=True)
     class Meta:
         model = User
-        fields = ('id', 'email', 'first_name', 'last_name', 'birthday', 'occupation', 'phones')
+        fields = ('id', 'email', 'password', 'first_name', 'last_name', 'birthday', 'occupation', 'phones')
         
         
-class CreateUserSerializer(ModelSerializer):
-    class Meta:
-        model = User
-        fields = ('email', 'password', 'first_name', 'last_name', 'birthday', 'occupation', 'phones')
+# class CreateUserSerializer(ModelSerializer):
+#     class Meta:
+#         model = User
+#         fields = ('email', 'password', 'first_name', 'last_name', 'birthday', 'occupation', 'phones')
         
