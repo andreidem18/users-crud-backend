@@ -14,9 +14,8 @@ class UserViewSet(ModelViewSet):
     
     def create(self, request, *args, **kwargs):
         user = User.objects.create(
-            email = request.data['email'], first_name = request.data['first_name'], last_name = request.data['last_name'], birthday = request.data['birthday'], occupation = Occupation.objects.get(id = request.data['occupation'])
+            email = request.data['email'], first_name = request.data['first_name'], last_name = request.data['last_name'], birthday = request.data['birthday'], password = request.data['password'], occupation = Occupation.objects.get(id = request.data['occupation'])
         )
-        user.set_password(request.data['password'])
         phones = list()
         for p in request.data['phones']:
             phone = Phone.objects.create(
@@ -25,6 +24,7 @@ class UserViewSet(ModelViewSet):
             )
             phones.append(phone)
         user.phones.set(phones)
+        user.save()
         serialized = UserSerializer(user)
         return Response(status = status.HTTP_201_CREATED, data = serialized.data)
         
