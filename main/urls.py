@@ -52,6 +52,5 @@ urlpatterns = [
     url(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     # path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     # path('api/token/refresh', TokenRefreshView.as_view(), name='token_refresh'),
-    path('admin/', admin.site.urls),
-    path('occupations/', occupations)
+    path('admin/', admin.site.urls)
 ] + router.urls

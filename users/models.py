@@ -45,11 +45,6 @@ class User(AbstractUser):
     first_name = models.CharField(max_length=25)
     last_name = models.CharField(max_length=25)
     birthday = models.DateField(blank=True, null=True)
-    occupation = models.ForeignKey(
-        Occupation,
-        on_delete=models.SET_NULL,
-        null=True
-    )
     username = models.CharField(max_length=10, unique=False, default='', blank=True, null=True)
 
 
