@@ -20,7 +20,6 @@ from datetime import timedelta
 import environ
 
 import dj_database_url
-import django_heroku
 
 env = environ.Env()
 environ.Env.read_env()
@@ -151,8 +150,6 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
@@ -163,6 +160,3 @@ DATABASES['default'].update(db_from_env)
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  
 STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-
-django_heroku.settings(locals())
