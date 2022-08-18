@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'drf_yasg',
     'corsheaders',
+    'softdelete',
     'users.apps.UsersConfig',
     'phones.apps.PhonesConfig',
     'occupations.apps.OccupationsConfig'
@@ -137,6 +138,17 @@ AUTH_PASSWORD_VALIDATORS = [
 # }
 # SIMPLE_JWT={'ACCESS_TOKEN_LIFETIME': timedelta(days= 1)}
 
+REST_FRAMEWORK = {
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle'
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '30/minute',
+        'user': '30/minute'
+    }
+}
+
 AUTH_USER_MODEL = 'users.User'
 
 
@@ -150,8 +162,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_L10N = True
-
-USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)

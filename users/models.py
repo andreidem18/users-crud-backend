@@ -1,6 +1,7 @@
 from django.db import models
 from occupations.models import Occupation
 from django.contrib.auth.models import AbstractUser, BaseUserManager
+from softdelete.models import SoftDeleteObject
 
 
 class MyUserManager(BaseUserManager):
@@ -40,12 +41,15 @@ class MyUserManager(BaseUserManager):
         return user
 
 
-class User(AbstractUser):
+class User(SoftDeleteObject, AbstractUser):
     email = models.EmailField(max_length=150, unique=True, null=False)
     first_name = models.CharField(max_length=25)
     last_name = models.CharField(max_length=25)
     birthday = models.DateField(blank=True, null=True)
     username = models.CharField(max_length=10, unique=False, default='', blank=True, null=True)
+    created_by = models.CharField(max_length=20, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
 
     objects = MyUserManager()
