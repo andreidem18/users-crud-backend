@@ -22,7 +22,7 @@ from drf_yasg.views import get_schema_view
 from django.conf.urls import url
 from drf_yasg import openapi
 from occupations.views import occupations
-from users.views import UserViewSet
+from custom_users.views import UserViewSet
 
 
 

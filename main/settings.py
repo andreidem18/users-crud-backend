@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'softdelete',
     'users.apps.UsersConfig',
+    'custom_users.apps.CustomUsersConfig',
     'phones.apps.PhonesConfig',
     'occupations.apps.OccupationsConfig'
 ]
