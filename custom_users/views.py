@@ -9,6 +9,12 @@ class UserViewSet(ModelViewSet):
     queryset= CustomUser.objects.all()
     serializer_class = UserSerializer
 
+    
+    def list(self, request, *args, **kwargs):
+        queryset = self.get_queryset().filter(created_by=get_client_ip(request))
+        serialized = UserSerializer(queryset, many=True)
+        return Response(serialized.data)
+
     def create(self, request, *args, **kwargs):
         user = CustomUser.objects.create(
             email = request.data['email'],
