@@ -1,3 +1,4 @@
+from custom_users.serializer import CreateUserSerializer
 from main.get_client_ip import get_client_ip
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
@@ -16,13 +17,11 @@ class UserViewSet(ModelViewSet):
         return Response(serialized.data)
 
     def create(self, request, *args, **kwargs):
-        user = CustomUser.objects.create(
-            email = request.data['email'],
-            first_name = request.data['first_name'],
-            last_name = request.data['last_name'],
-            birthday = request.data['birthday'],
-            password = request.data['password'],
-            created_by=get_client_ip(request)
-        )
-        serialized = UserSerializer(user)
-        return Response(status = status.HTTP_201_CREATED, data = serialized.data)
+        request.data['created_by']=get_client_ip(request)
+        serialized = CreateUserSerializer(data=request.data)
+        if not serialized.is_valid():
+            return Response(status = status.HTTP_400_BAD_REQUEST, data = serialized.errors)
+        else:
+            serialized.save()
+            serialized = UserSerializer(serialized.data)
+            return Response(status = status.HTTP_201_CREATED, data = serialized.data)
