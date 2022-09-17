@@ -2,7 +2,7 @@ from django.db import models
 from softdelete.models import SoftDeleteObject
 
 class CustomUser(SoftDeleteObject, models.Model):
-    email = models.EmailField(max_length=150, unique=True, null=False)
+    email = models.EmailField(max_length=150, null=False)
     first_name = models.CharField(max_length=25)
     last_name = models.CharField(max_length=25)
     password = models.CharField(max_length=25)
