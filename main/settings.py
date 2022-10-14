@@ -51,7 +51,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'users.apps.UsersConfig',
     'phones.apps.PhonesConfig',
-    'occupations.apps.OccupationsConfig'
+    'occupations.apps.OccupationsConfig',
+    'custom_users.apps.CustomUsersConfig'
 ]
 
 MIDDLEWARE = [
